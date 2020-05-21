@@ -1,6 +1,7 @@
 class Player {
-    constructor(ctx) {
+    constructor(ctx, winLogic) {
         // this.game_board = game_board;
+        this.winLogic = winLogic;
         this.ctx = ctx;
         this.x = 250;
         this.y = 450;
@@ -50,7 +51,7 @@ class Player {
     up() {
         this.y -= 10;
         if (this.y === -10) {
-            console.log('You made it!')
+            this.winLogic();
         }
     }
 

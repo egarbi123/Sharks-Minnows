@@ -18,6 +18,10 @@ class Shark {
         this.ctx.fill();
         this.ctx.closePath();
     }
+
+    movement() {
+
+    }
 }
 
 export default Shark;
