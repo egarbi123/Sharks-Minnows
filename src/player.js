@@ -1,7 +1,7 @@
 class Player {
-    constructor() {
-        this.game_board = document.getElementById("game");
-        this.ctx = this.game_board.getContext("2d");
+    constructor(ctx) {
+        // this.game_board = game_board;
+        this.ctx = ctx;
         this.x = 250;
         this.y = 450;
         this.up = this.up.bind(this);
@@ -13,16 +13,13 @@ class Player {
 
     initialize() {
         this.drawBall();
-        this.listenUp()
+        // this.listenUp()
     }
 
     draw() {
-        this.ctx.clearRect(0, 0, this.game_board.width, this.game_board.height);
+        // this.ctx.clearRect(0, 0, this.game_board.width, this.game_board.height);
+        // ctx.clearRect(0, 0, game_board.width, game_board.height);
         this.drawBall();
-    }
-
-    animate() {
-        window.requestAnimationFrame(() => this.drawBall())
     }
 
     drawBall() {
@@ -52,22 +49,27 @@ class Player {
 
     up() {
         this.y -= 10;
-        this.animate();
+        if (this.y === -10) {
+            console.log('You made it!')
+        }
     }
 
     down() {
-        this.y += 10;
-        this.draw();
+        if (this.y <= 485) {
+            this.y += 10;
+        }
     }
 
     left() {
-        this.x -= 10;
-        this.draw();
+        if (this.x >= 15) {
+            this.x -= 10;
+        }
     }
 
     right() {
-        this.x += 10;
-        this.draw();
+        if (this.x <= 485) {
+            this.x += 10;
+        }
     }
 
     clear() {

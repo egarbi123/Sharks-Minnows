@@ -2,23 +2,23 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: cadetblue;
 }
 
 header {
     width: 100%;
-    height: 150px;
-    background-color: cadetblue;
+    height: 50px;
     text-align: center;
 }
 
 #game {
     margin: auto;
     background-color: #cce6ff;
+    border: 1px solid black;
 }
 
 footer {
     width: 100%;
-    height: 150px;
-    background-color: cadetblue;
+    height: 50px;
     text-align: center;
 }
