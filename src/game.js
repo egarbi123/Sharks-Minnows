@@ -7,18 +7,38 @@ class Game {
         this.ctx = this.game_board.getContext("2d");
         this.pieces = [];
         this.winner = this.winner.bind(this);
-        this.player = new Player(this.ctx, this.winner);
-        this.shark = new Shark(this.ctx);
+        this.draw = this.draw.bind(this);
         this.recognizeMovement = this.recognizeMovement.bind(this);
         this.initialize();
     }
 
     initialize() {
+        this.player = new Player(this.ctx, this.winner);
         this.pieces.push(this.player);
-        this.pieces.push(this.shark);
         this.player.drawBall();
-        this.shark.drawBall();
+        this.populateSharks();
         this.beginMovement();
+    }
+
+    populateSharks() {
+        this.shark1 = this.createShark(150, 150, 'hor');
+        this.shark2 = this.createShark(350, 350);
+        this.shark3 = this.createShark(250, 100, 'hor');
+        this.shark4 = this.createShark(100, 250);
+        this.shark5 = this.createShark(200, 400, 'hor');
+        this.shark6 = this.createShark(100, 280, 'hor');
+        this.shark7 = this.createShark();
+        this.shark8 = this.createShark();
+        this.shark9 = this.createShark();
+        this.shark0 = this.createShark();
+    }
+
+    createShark(x, y, direction) {
+        let shark = new Shark(this.ctx, this.draw, x, y);
+        this.pieces.push(shark);
+        shark.drawBall();
+        shark.getMoving(direction);
+        return shark;
     }
 
     draw() {
@@ -54,12 +74,19 @@ class Game {
 
     endMovement() {
         document.removeEventListener("keydown", this.recognizeMovement);
+        let sharks = this.pieces.slice(1);
+        for (let i = 0; i < sharks.length; i++) {
+            sharks[i].stopMoving();
+        }
     }
 
     gameOver() {
-        if ((Math.abs(this.player.y - this.shark.y) <= 10) && (Math.abs(this.player.x - this.shark.x) <= 10)) {
-            this.endMovement();
-            alert('You Lost.')
+        let sharks = this.pieces.slice(1);
+        for (let i = 0; i < sharks.length; i++) {
+            if ((Math.abs(this.player.y - sharks[i].y) <= 10) && (Math.abs(this.player.x - sharks[i].x) <= 10)) {
+                this.endMovement();
+                alert('You Lost.')
+            }
         }
     }
 

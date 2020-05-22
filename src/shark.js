@@ -1,17 +1,13 @@
 class Shark {
-    constructor(ctx) {
-        // this.game_board = game_board;
+    constructor(ctx, draw, x = 250, y = 150) {
         this.ctx = ctx;
-        this.x = 250;
-        this.y = 50;
+        this.x = x;
+        this.y = y;
+        this.count = 0;
+        this.draw = draw;
     }
 
     drawBall() {
-        // ctx.beginPath();
-        // ctx.arc(this.x, this.y, 10, 0, Math.PI * 2, false);
-        // ctx.fillStyle = "red";
-        // ctx.fill();
-        // ctx.closePath();
         this.ctx.beginPath();
         this.ctx.arc(this.x, this.y, 10, 0, Math.PI * 2, false);
         this.ctx.fillStyle = "red";
@@ -19,8 +15,53 @@ class Shark {
         this.ctx.closePath();
     }
 
-    movement() {
+    getMoving(direction) {
+        this.interval = setInterval(() => {
+            if (direction === 'hor') {
+                this.movementLogicHorizontal();
+            } else {
+                this.movementLogicVertical();
+            }
+            this.draw();
+        }, 100);
+    }
 
+    stopMoving() {
+        clearInterval(this.interval);
+    }
+
+    movementLogicHorizontal() {
+        this.count += 1;
+        if (this.count % 50 < 25) {
+            this.movementRight();
+        } else {
+            this.movementLeft();
+        }
+    }
+
+    movementLogicVertical() {
+        this.count += 1;
+        if (this.count % 50 < 25) {
+            this.movementDown();
+        } else {
+            this.movementUp();
+        }
+    }
+
+    movementRight() {
+        this.x += 5;
+    }
+
+    movementLeft() {
+        this.x -= 5;
+    }
+
+    movementUp() {
+        this.y += 5;
+    }
+
+    movementDown() {
+        this.y -= 5;
     }
 }
 

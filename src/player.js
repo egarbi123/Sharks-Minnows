@@ -31,22 +31,22 @@ class Player {
         this.ctx.closePath();
     }
 
-    listenUp() {
-        document.addEventListener("keydown", e => {
-            switch (e.key) {
-                case "ArrowUp":
-                    return this.up();
-                case "ArrowDown":
-                    return this.down();
-                case "ArrowLeft":
-                    return this.left();
-                case "ArrowRight":
-                    return this.right();
-                default:
-                    break;
-            }
-        })
-    }
+    // listenUp() {
+    //     document.addEventListener("keydown", e => {
+    //         switch (e.key) {
+    //             case "ArrowUp":
+    //                 return this.up();
+    //             case "ArrowDown":
+    //                 return this.down();
+    //             case "ArrowLeft":
+    //                 return this.left();
+    //             case "ArrowRight":
+    //                 return this.right();
+    //             default:
+    //                 break;
+    //         }
+    //     })
+    // }
 
     up() {
         this.y -= 10;
