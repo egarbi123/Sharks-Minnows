@@ -1,10 +1,11 @@
 class Shark {
-    constructor(ctx, draw, x = 250, y = 150) {
+    constructor(ctx, draw, x = 250, y = 150, player) {
         this.ctx = ctx;
         this.x = x;
         this.y = y;
         this.count = 0;
         this.draw = draw;
+        this.player = player;
     }
 
     drawBall() {
@@ -19,11 +20,17 @@ class Shark {
         this.interval = setInterval(() => {
             if (direction === 'hor') {
                 this.movementLogicHorizontal();
-            } else {
+            } else if (direction === 'diagRight') {
+                this.movementLogicDiagonalRight();
+            } else if (direction === 'diagLeft') {
+                this.movementLogicDiagonalLeft();
+            } else if (direction === 'vert') {
                 this.movementLogicVertical();
+            } else {
+                this.moveToPlayer();
             }
             this.draw();
-        }, 100);
+        }, 50);
     }
 
     stopMoving() {
@@ -32,7 +39,7 @@ class Shark {
 
     movementLogicHorizontal() {
         this.count += 1;
-        if (this.count % 50 < 25) {
+        if (this.count % 100 < 50) {
             this.movementRight();
         } else {
             this.movementLeft();
@@ -41,27 +48,85 @@ class Shark {
 
     movementLogicVertical() {
         this.count += 1;
-        if (this.count % 50 < 25) {
+        if (this.count % 100 < 50) {
             this.movementDown();
         } else {
             this.movementUp();
         }
     }
 
+    movementLogicDiagonalRight() {
+        this.count += 1;
+        if (this.count % 100 < 50) {
+            this.movementUpRight();
+        } else {
+            this.movementDownLeft();
+        }
+    }
+
+    movementLogicDiagonalLeft() {
+        this.count += 1;
+        if (this.count % 100 < 50) {
+            this.movementUpLeft();
+        } else {
+            this.movementDownRight();
+        }
+    }
+
     movementRight() {
-        this.x += 5;
+        this.x += 2;
     }
 
     movementLeft() {
-        this.x -= 5;
+        this.x -= 2;
     }
 
     movementUp() {
-        this.y += 5;
+        this.y += 2;
     }
 
     movementDown() {
-        this.y -= 5;
+        this.y -= 2;
+    }
+
+    movementUpRight() {
+        this.y += 2;
+        this.x += 2;
+    }
+
+    movementUpLeft() {
+        this.y += 2;
+        this.x -= 2;
+    }
+
+    movementDownRight() {
+        this.y -= 2;
+        this.x += 2;
+    }
+
+    movementDownLeft() {
+        this.y -= 2;
+        this.x -= 2;
+    }
+
+    moveToPlayer() {
+        if (this.x < this.player.x && this.y < this.player.y) {
+            this.movementUpRight();
+        } else if (this.x > this.player.x && this.y < this.player.y) {
+            this.movementUpLeft();
+        } else if (this.x < this.player.x && this.y > this.player.y) {
+            this.movementDownRight();
+        } else if (this.x > this.player.x && this.y > this.player.y) {
+            this.movementDownLeft();
+        } else if (this.x > this.player.x) {
+            this.movementLeft();
+        } else if (this.x < this.player.x) {
+            this.movementRight();
+        } else if (this.y > this.player.y) {
+            this.movementDown();
+        } else {
+            this.movementUp();
+        }
     }
 }
 

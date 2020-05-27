@@ -1,6 +1,5 @@
 class Player {
     constructor(ctx, winLogic) {
-        // this.game_board = game_board;
         this.winLogic = winLogic;
         this.ctx = ctx;
         this.x = 250;
@@ -12,69 +11,37 @@ class Player {
         this.drawBall = this.drawBall.bind(this);
     }
 
-    initialize() {
-        this.drawBall();
-        // this.listenUp()
-    }
-
-    draw() {
-        // this.ctx.clearRect(0, 0, this.game_board.width, this.game_board.height);
-        // ctx.clearRect(0, 0, game_board.width, game_board.height);
-        this.drawBall();
-    }
-
     drawBall() {
         this.ctx.beginPath();
-        this.ctx.arc(this.x, this.y, 10, 0, Math.PI * 2, false);
+        this.ctx.arc(this.x, this.y, 5, 0, Math.PI * 2, false);
         this.ctx.fillStyle = "green";
         this.ctx.fill();
         this.ctx.closePath();
     }
 
-    // listenUp() {
-    //     document.addEventListener("keydown", e => {
-    //         switch (e.key) {
-    //             case "ArrowUp":
-    //                 return this.up();
-    //             case "ArrowDown":
-    //                 return this.down();
-    //             case "ArrowLeft":
-    //                 return this.left();
-    //             case "ArrowRight":
-    //                 return this.right();
-    //             default:
-    //                 break;
-    //         }
-    //     })
-    // }
-
     up() {
-        this.y -= 10;
-        if (this.y === -10) {
+        this.y -= 12.5;
+        if (this.y <= -10) {
             this.winLogic();
         }
     }
 
     down() {
         if (this.y <= 485) {
-            this.y += 10;
+            this.y += 12.5;
         }
     }
 
     left() {
         if (this.x >= 15) {
-            this.x -= 10;
+            this.x -= 12.5;
         }
     }
 
     right() {
         if (this.x <= 485) {
-            this.x += 10;
+            this.x += 12.5;
         }
-    }
-
-    clear() {
-        this.ctx.clearRect(0, 0, this.game_board.width, this.game_board.height);
     }
 }
 

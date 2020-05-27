@@ -9,6 +9,7 @@ class Game {
         this.winner = this.winner.bind(this);
         this.draw = this.draw.bind(this);
         this.recognizeMovement = this.recognizeMovement.bind(this);
+        this.level = 0;
         this.initialize();
     }
 
@@ -16,25 +17,68 @@ class Game {
         this.player = new Player(this.ctx, this.winner);
         this.pieces.push(this.player);
         this.player.drawBall();
-        this.populateSharks();
+        this.levelOne();
         this.beginMovement();
     }
 
-    populateSharks() {
-        this.shark1 = this.createShark(150, 150, 'hor');
-        this.shark2 = this.createShark(350, 350);
-        this.shark3 = this.createShark(250, 100, 'hor');
-        this.shark4 = this.createShark(100, 250);
-        this.shark5 = this.createShark(200, 400, 'hor');
-        this.shark6 = this.createShark(100, 280, 'hor');
-        this.shark7 = this.createShark();
-        this.shark8 = this.createShark();
-        this.shark9 = this.createShark();
-        this.shark0 = this.createShark();
+    reset() {
+        this.pieces = [];
+        this.player = new Player(this.ctx, this.winner);
+        this.pieces.push(this.player);
+        this.player.drawBall();
+        this.levelOne();
+        this.beginMovement();
+    }
+
+    levelOne() {
+        this.shark1 = this.createShark(350, 150, 'hor');
+        this.shark2 = this.createShark(100, 150, 'hor');
+        this.shark3 = this.createShark(350, 350, 'hor');
+        this.shark4 = this.createShark(100, 350, 'hor');
+        this.shark0 = this.createShark(250, 250);
+        this.level = 1;
+    }
+
+    levelTwo() {
+        this.pieces = [];
+        this.player = new Player(this.ctx, this.winner);
+        this.pieces.push(this.player);
+        this.player.drawBall();
+        this.shark1 = this.createShark(350, 150, 'hor');
+        this.shark2 = this.createShark(100, 150, 'hor');
+        this.shark3 = this.createShark(350, 350, 'hor');
+        this.shark4 = this.createShark(100, 350, 'hor');
+        this.shark0 = this.createShark(100, 250);
+        this.shark00 = this.createShark(400, 250);
+        this.beginMovement();
+        this.level = 2;
+    }
+
+    levelThree() {
+        this.pieces = [];
+        this.player = new Player(this.ctx, this.winner);
+        this.pieces.push(this.player);
+        this.player.drawBall();
+        this.shark1 = this.createShark(350, 150, 'hor');
+        this.shark2 = this.createShark(100, 150, 'hor');
+        this.shark3 = this.createShark(350, 350, 'hor');
+        this.shark4 = this.createShark(100, 350, 'hor');
+        this.shark1 = this.createShark(50, 150, 'hor');
+        this.shark2 = this.createShark(50, 250, 'hor');
+        this.shark3 = this.createShark(50, 350, 'hor');
+        this.shark4 = this.createShark(50, 450, 'hor');
+        this.shark1 = this.createShark(150, 250, 'vert');
+        this.shark2 = this.createShark(350, 150, 'vert');
+        this.shark3 = this.createShark(350, 350, 'vert');
+        this.shark4 = this.createShark(100, 350, 'vert');
+        this.shark0 = this.createShark(100, 250);
+        this.shark00 = this.createShark(400, 250);
+        this.beginMovement();
+        this.level = 3;
     }
 
     createShark(x, y, direction) {
-        let shark = new Shark(this.ctx, this.draw, x, y);
+        let shark = new Shark(this.ctx, this.draw, x, y, this.player);
         this.pieces.push(shark);
         shark.drawBall();
         shark.getMoving(direction);
@@ -70,6 +114,7 @@ class Game {
 
     beginMovement() {
         document.addEventListener("keydown", this.recognizeMovement);
+
     }
 
     endMovement() {
@@ -86,13 +131,25 @@ class Game {
             if ((Math.abs(this.player.y - sharks[i].y) <= 10) && (Math.abs(this.player.x - sharks[i].x) <= 10)) {
                 this.endMovement();
                 alert('You Lost.')
+                this.reset()
             }
         }
     }
 
     winner() {
         this.endMovement();
-        alert('You Win!');
+        this.nextLevel();
+    }
+
+    nextLevel() {
+        switch (this.level) {
+            case 1:
+                return this.levelTwo();
+            case 2:
+                return this.levelThree();
+            default:
+                break;
+        }
     }
 }
 
