@@ -1,11 +1,11 @@
 class Shark {
-    constructor(ctx, draw, x = 250, y = 150, player) {
+    constructor(ctx, draw, x, y) {
         this.ctx = ctx;
         this.x = x;
         this.y = y;
         this.count = 0;
         this.draw = draw;
-        this.player = player;
+        this.allMinnows = [];
     }
 
     drawBall() {
@@ -109,20 +109,43 @@ class Shark {
         this.x -= 2;
     }
 
+    distance(minnow) {
+        let xDist = Math.abs(this.x - minnow.x);
+        let yDist = Math.abs(this.y - minnow.y);
+        let distance = Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2))
+        return distance;
+    }
+
+    findClosestMinnow(allMinnows) {
+        let closestMinnow = allMinnows[0];
+        let shortestDistance = this.distance(closestMinnow);
+        for (let i = 1; i < allMinnows.length; i++) {
+            if (allMinnows[i].dead === false) {
+                let distance = this.distance(allMinnows[i]);
+                if (distance < shortestDistance) {
+                    shortestDistance = distance;
+                    closestMinnow = allMinnows[i];
+                }
+            }
+        }
+        return closestMinnow;
+    }
+
     moveToPlayer() {
-        if (this.x < this.player.x && this.y < this.player.y) {
+        let minnow = this.findClosestMinnow(this.allMinnows);
+        if (this.x < minnow.x && this.y < minnow.y) {
             this.movementUpRight();
-        } else if (this.x > this.player.x && this.y < this.player.y) {
+        } else if (this.x > minnow.x && this.y < minnow.y) {
             this.movementUpLeft();
-        } else if (this.x < this.player.x && this.y > this.player.y) {
+        } else if (this.x < minnow.x && this.y > minnow.y) {
             this.movementDownRight();
-        } else if (this.x > this.player.x && this.y > this.player.y) {
+        } else if (this.x > minnow.x && this.y > minnow.y) {
             this.movementDownLeft();
-        } else if (this.x > this.player.x) {
+        } else if (this.x > minnow.x) {
             this.movementLeft();
-        } else if (this.x < this.player.x) {
+        } else if (this.x < minnow.x) {
             this.movementRight();
-        } else if (this.y > this.player.y) {
+        } else if (this.y > minnow.y) {
             this.movementDown();
         } else {
             this.movementUp();

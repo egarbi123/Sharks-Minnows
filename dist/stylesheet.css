@@ -22,3 +22,9 @@ footer {
     height: 50px;
     text-align: center;
 }
+
+#directions {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
