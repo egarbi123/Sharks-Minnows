@@ -40,10 +40,18 @@ class Minnow {
                 this.dead = true;
             }
             if (distance < 50) {
-                if (closestShark.x > this.x) {
+                if (closestShark.x > this.x && closestShark.y > this.y) {
                     this.left();
-                } else {
+                    this.up();
+                } else if (closestShark.x < this.x && closestShark.y > this.y) {
                     this.right();
+                    this.up();
+                } else if (closestShark.x > this.x && closestShark.y < this.y) {
+                    this.left();
+                    this.down()
+                } else if (closestShark.x < this.x && closestShark.y < this.y) {
+                    this.right();
+                    this.down();
                 }
             }
             this.up();

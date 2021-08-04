@@ -1,6 +1,6 @@
 #app {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     background-color: cadetblue;
 }
@@ -12,7 +12,7 @@ header {
 }
 
 #game {
-    margin: auto;
+    margin: 0px, 0px, 0px, 0px;
     background-color: #cce6ff;
     border: 1px solid black;
 }
@@ -25,6 +25,32 @@ footer {
 
 #directions {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     text-align: center;
+    background-color: aqua;
+    height: 500px;
+    width: 300px;
+    margin-top: 72px;
+    margin-right: 25px;
+}
+
+.button {
+    padding: 10px 16px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    background-color: aqua;
+    border-radius: 2px;
+    display: block;
+    margin: auto;
+}
+
+.button:hover {
+    background-color: teal
+}
+
+.button:active {
+    background-color: aqua;
+    transform: translateY(2px);
 }

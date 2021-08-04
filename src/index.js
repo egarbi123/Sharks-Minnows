@@ -1,3 +1,4 @@
 import Game from './game';
 
-const game = new Game();
+// window.GameStart = () => { new Game }
+document.getElementById("start-button").addEventListener("click", console.log("clicked"))

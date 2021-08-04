@@ -21,6 +21,10 @@ class Game {
         this.beginMovement();
     }
 
+    clickToRestart() {
+        this.initialize();
+    }
+
     informAssets() {
         for (let i = 0; i < this.sharks.length; i++) {
             this.sharks[i].allMinnows = this.minnows;
@@ -71,7 +75,7 @@ class Game {
 
     setSharks(n) {
         this.sharks = [];
-        let sharkSpace = 400 / n;
+        let sharkSpace = 450 / n - 1;
         let sharkX = 50;
         for (let i = 0; i < n; i++) {
             this.createShark(sharkX);
@@ -80,7 +84,7 @@ class Game {
     }
 
     setMinnows(n) {
-        let minnowSpace = 400 / n;
+        let minnowSpace = 450 / n - 1;
         let minnowX = 50;
         for (let i = 0; i < n; i++) {
             this.createMinnow(minnowX);
@@ -89,10 +93,8 @@ class Game {
     }
 
     setPlayer() {
-        console.log('in setPlayer');
         this.player = new Player(this.ctx, this.winner);
         this.minnows.push(this.player)
-        console.log('minnows:', this.minnows);
         this.player.drawBall();
     }
 

@@ -8,27 +8,33 @@
     <title>Document</title>
 </head>
 
+
 <body>
     <div id="app">
-        <header>
-            <h2> 🦈 Welcome to Sharks & Minnows! 🦈</h2>
-        </header>
         <div id="directions">
-            <div>
-                <h3>
-                    How to play:
-                </h3>
-                <p>You are the minnow, the green dot.</p>
-                <p>Your goal is to get to the top of the screen </p>
-                <p>without getting caught by the sharks, the red dots.</p>
-            </div>
-            <canvas id="game" height="500px" width="500px"></canvas>
+            <h3>
+                HOW TO PLAY
+            </h3>
+            <p>You are the minnow, the green dot.</p>
+            <p>Your goal is to get to the top of the screen </p>
+            <p>Be careful of the sharks in the way!</p>
+            <p>The sharks are marked by the red dots.</p>
+            <button class="button" id="start-button">PLAY</button>
         </div>
-        <footer>
-            <h4>Hope to see you again soon!</h4>
-        </footer>
+        <div>
+            <header>
+                <h2> 🦈 Welcome to Sharks & Minnows! 🦈</h2>
+            </header>
+            <canvas id="game" height="500px" width="500px"></canvas>
+            <footer>
+                <h4>Hope to see you again soon!</h4>
+            </footer>
+        </div>
     </div>
-    <script src="./dist/bundle.js"></script>
 </body>
+<script src="./dist/bundle.js"></script>
+<script>
+    // console.log(Game)
+</script>
 
 </html>
