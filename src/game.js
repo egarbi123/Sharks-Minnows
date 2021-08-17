@@ -112,15 +112,19 @@ class Game {
     recognizeMovement(e) {
         switch (e.key) {
             case "ArrowUp":
+                e.preventDefault();
                 this.player.up();
                 return this.draw();
             case "ArrowDown":
+                e.preventDefault();
                 this.player.down();
                 return this.draw();
             case "ArrowLeft":
+                e.preventDefault();
                 this.player.left();
                 return this.draw();
             case "ArrowRight":
+                e.preventDefault();
                 this.player.right();
                 return this.draw();
             default:
