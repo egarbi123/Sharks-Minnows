@@ -1,8 +1,3 @@
-body {
-    /* overflow-y: hidden;
-    overflow-x: hidden; */
-}
-
 #app {
     display: flex;
     flex-direction: row;

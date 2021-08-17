@@ -30,7 +30,7 @@ class Shark {
                 this.moveToPlayer();
             }
             this.draw();
-        }, 50);
+        }, 40);
     }
 
     stopMoving() {

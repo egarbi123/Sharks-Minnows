@@ -52,7 +52,7 @@ class Game {
 
     levelOne() {
         this.setSharks(1);
-        this.setMinnows(7);
+        this.setMinnows(8);
         this.informAssets();
         this.moveAssets();
         this.level = 1;
@@ -150,8 +150,8 @@ class Game {
         for (let i = 0; i < sharks.length; i++) {
             if ((Math.abs(this.player.y - sharks[i].y) <= 10) && (Math.abs(this.player.x - sharks[i].x) <= 10)) {
                 this.endMovement();
-                // alert('You Lost.')
-                this.reset()
+                alert('You Lost.')
+                    // this.reset()
             }
         }
     }
