@@ -150,7 +150,7 @@ class Game {
         for (let i = 0; i < sharks.length; i++) {
             if ((Math.abs(this.player.y - sharks[i].y) <= 10) && (Math.abs(this.player.x - sharks[i].x) <= 10)) {
                 this.endMovement();
-                alert('You Lost.')
+                alert(`You Lost, Congratulation On Making It To Level ${this.level}`)
                     // this.reset()
             }
         }
