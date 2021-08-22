@@ -19,12 +19,12 @@ class Shark {
 
     getMoving() {
         this.moving = true;
-        let randomNumber = 0;
+        let randomNumber = (Math.round(Math.random() * 100) / 100) * 100;
         this.interval = setInterval(() => {
-            if (this.count % 10 === 0) {
+            if (this.count % 50 === 0) {
                 randomNumber = (Math.round(Math.random() * 100) / 100) * 100;
             }
-            if (this.count % 10 >= 0 && this.count % 10 < 5) {
+            if (this.count % 50 >= 0 && this.count % 50 < 25) {
                 this.moveToPlayer();
             } else {
                 this.randomMovement(randomNumber);
@@ -39,8 +39,6 @@ class Shark {
     }
 
     randomMovement(number) {
-        // this.count += 1;
-        console.log(number);
         if (number >= 0 && number < 25) {
             this.movementUpRight();
         } else if (number >= 25 && number < 50) {
@@ -109,7 +107,6 @@ class Shark {
     }
 
     moveToPlayer() {
-        console.log('THIS.COUNT =', this.count);
         let minnow = this.findClosestMinnow(this.allMinnows);
         if (this.x < minnow.x && this.y < minnow.y) {
             this.movementUpRight();
