@@ -17,19 +17,17 @@ class Shark {
         this.ctx.closePath();
     }
 
-    getMoving(direction) {
+    getMoving() {
         this.moving = true;
+        let randomNumber = 0;
         this.interval = setInterval(() => {
-            if (direction === 'hor') {
-                this.movementLogicHorizontal();
-            } else if (direction === 'diagRight') {
-                this.movementLogicDiagonalRight();
-            } else if (direction === 'diagLeft') {
-                this.movementLogicDiagonalLeft();
-            } else if (direction === 'vert') {
-                this.movementLogicVertical();
-            } else {
+            if (this.count % 10 === 0) {
+                randomNumber = (Math.round(Math.random() * 100) / 100) * 100;
+            }
+            if (this.count % 10 >= 0 && this.count % 10 < 5) {
                 this.moveToPlayer();
+            } else {
+                this.randomMovement(randomNumber);
             }
             this.draw();
         }, 40);
@@ -40,55 +38,37 @@ class Shark {
         clearInterval(this.interval);
     }
 
-    movementLogicHorizontal() {
-        this.count += 1;
-        if (this.count % 100 < 50) {
-            this.movementRight();
-        } else {
-            this.movementLeft();
-        }
-    }
-
-    movementLogicVertical() {
-        this.count += 1;
-        if (this.count % 100 < 50) {
-            this.movementDown();
-        } else {
-            this.movementUp();
-        }
-    }
-
-    movementLogicDiagonalRight() {
-        this.count += 1;
-        if (this.count % 100 < 50) {
+    randomMovement(number) {
+        // this.count += 1;
+        console.log(number);
+        if (number >= 0 && number < 25) {
             this.movementUpRight();
+        } else if (number >= 25 && number < 50) {
+            this.movementUpLeft();
+        } else if (number >= 50 && number < 75) {
+            this.movementDownRight();
         } else {
             this.movementDownLeft();
         }
     }
 
-    movementLogicDiagonalLeft() {
-        this.count += 1;
-        if (this.count % 100 < 50) {
-            this.movementUpLeft();
-        } else {
-            this.movementDownRight();
-        }
-    }
-
     movementRight() {
+        this.count += 1;
         this.x += 2;
     }
 
     movementLeft() {
+        this.count += 1;
         this.x -= 2;
     }
 
     movementUp() {
+        this.count += 1;
         this.y += 2;
     }
 
     movementDown() {
+        this.count += 1;
         if (this.y <= 20) {
             this.y += 2
         } else {
@@ -97,16 +77,19 @@ class Shark {
     }
 
     movementUpRight() {
+        this.count += 1;
         this.y += 2;
         this.x += 2;
     }
 
     movementUpLeft() {
+        this.count += 1;
         this.y += 2;
         this.x -= 2;
     }
 
     movementDownRight() {
+        this.count += 1;
         if (this.y <= 20) {
             this.y += 2
         } else {
@@ -116,6 +99,7 @@ class Shark {
     }
 
     movementDownLeft() {
+        this.count += 1;
         if (this.y <= 20) {
             this.y += 2
         } else {
@@ -124,29 +108,8 @@ class Shark {
         this.x -= 2;
     }
 
-    distance(minnow) {
-        let xDist = Math.abs(this.x - minnow.x);
-        let yDist = Math.abs(this.y - minnow.y);
-        let distance = Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2))
-        return distance;
-    }
-
-    findClosestMinnow(allMinnows) {
-        let closestMinnow = allMinnows[0];
-        let shortestDistance = this.distance(closestMinnow);
-        for (let i = 1; i < allMinnows.length; i++) {
-            if (allMinnows[i].dead === false && allMinnows[i].survivor === false) {
-                let distance = this.distance(allMinnows[i]);
-                if (distance < shortestDistance) {
-                    shortestDistance = distance;
-                    closestMinnow = allMinnows[i];
-                }
-            }
-        }
-        return closestMinnow;
-    }
-
     moveToPlayer() {
+        console.log('THIS.COUNT =', this.count);
         let minnow = this.findClosestMinnow(this.allMinnows);
         if (this.x < minnow.x && this.y < minnow.y) {
             this.movementUpRight();
@@ -165,6 +128,28 @@ class Shark {
         } else {
             this.movementUp();
         }
+    }
+
+    findClosestMinnow(allMinnows) {
+        let closestMinnow = allMinnows[0];
+        let shortestDistance = this.distance(closestMinnow);
+        for (let i = 1; i < allMinnows.length; i++) {
+            if (allMinnows[i].dead === false && allMinnows[i].survivor === false) {
+                let distance = this.distance(allMinnows[i]);
+                if (distance < shortestDistance) {
+                    shortestDistance = distance;
+                    closestMinnow = allMinnows[i];
+                }
+            }
+        }
+        return closestMinnow;
+    }
+
+    distance(minnow) {
+        let xDist = Math.abs(this.x - minnow.x);
+        let yDist = Math.abs(this.y - minnow.y);
+        let distance = Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2))
+        return distance;
     }
 }
 
