@@ -12,6 +12,7 @@ class Game {
         this.draw = this.draw.bind(this);
         this.recognizeMovement = this.recognizeMovement.bind(this);
         this.level = 0;
+        this.gameOn = true;
         this.initialize();
     }
 
@@ -43,6 +44,24 @@ class Game {
         }
     }
 
+    stopMoveAssets() {
+        for (let i = 0; i < this.sharks.length; i++) {
+            this.sharks[i].stopMoving();
+        }
+        for (let i = 1; i < this.minnows.length; i++) {
+            this.minnows[i].stopMoving();
+        }
+    }
+
+    undrawAssets() {
+        for (let i = 0; i < this.sharks.length; i++) {
+            this.sharks[i].ctx = null;
+        }
+        for (let i = 1; i < this.minnows.length; i++) {
+            this.minnows[i].ctx = null;
+        }
+    }
+
     reset() {
         this.minnows = [];
         this.setPlayer();
@@ -58,6 +77,21 @@ class Game {
         this.level = 1;
     }
 
+    endGame() {
+        this.stopMoveAssets();
+        this.gameOn = false;
+        this.sharks = [];
+        this.minnows = [];
+        this.ctx.clearRect(0, 0, 500, 500);
+    }
+
+    pauseGame() {
+        if (this.sharks[0].moving) {
+            this.stopMoveAssets();
+        } else {
+            this.moveAssets();
+        }
+    }
 
     createMinnow(x, y = 450) {
         let minnow = new Minnow(this.ctx, this.draw, x, y);
@@ -184,7 +218,9 @@ class Game {
         for (let i = 1; i < this.minnows.length; i++) {
             this.minnows[i].getMoving();
         }
-        this.beginMovement();
+        if (this.gameOn) {
+            this.beginMovement();
+        }
     }
 }
 

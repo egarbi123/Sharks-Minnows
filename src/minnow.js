@@ -10,8 +10,6 @@ class Minnow {
         this.drawBall = this.drawBall.bind(this);
     }
 
-
-
     distance(shark) {
         let xDist = Math.abs(this.x - shark.x);
         let yDist = Math.abs(this.y - shark.y);

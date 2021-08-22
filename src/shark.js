@@ -6,6 +6,7 @@ class Shark {
         this.count = 0;
         this.draw = draw;
         this.allMinnows = [];
+        this.moving = false;
     }
 
     drawBall() {
@@ -17,6 +18,7 @@ class Shark {
     }
 
     getMoving(direction) {
+        this.moving = true;
         this.interval = setInterval(() => {
             if (direction === 'hor') {
                 this.movementLogicHorizontal();
@@ -34,6 +36,7 @@ class Shark {
     }
 
     stopMoving() {
+        this.moving = false;
         clearInterval(this.interval);
     }
 
