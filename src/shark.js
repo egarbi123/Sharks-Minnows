@@ -86,7 +86,11 @@ class Shark {
     }
 
     movementDown() {
-        this.y -= 2;
+        if (this.y <= 20) {
+            this.y += 2
+        } else {
+            this.y -= 2;
+        }
     }
 
     movementUpRight() {
@@ -100,12 +104,20 @@ class Shark {
     }
 
     movementDownRight() {
-        this.y -= 2;
+        if (this.y <= 20) {
+            this.y += 2
+        } else {
+            this.y -= 2;
+        }
         this.x += 2;
     }
 
     movementDownLeft() {
-        this.y -= 2;
+        if (this.y <= 20) {
+            this.y += 2
+        } else {
+            this.y -= 2;
+        }
         this.x -= 2;
     }
 
@@ -120,7 +132,7 @@ class Shark {
         let closestMinnow = allMinnows[0];
         let shortestDistance = this.distance(closestMinnow);
         for (let i = 1; i < allMinnows.length; i++) {
-            if (allMinnows[i].dead === false) {
+            if (allMinnows[i].dead === false && allMinnows[i].survivor === false) {
                 let distance = this.distance(allMinnows[i]);
                 if (distance < shortestDistance) {
                     shortestDistance = distance;
