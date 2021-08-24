@@ -7,6 +7,7 @@ class Shark {
         this.draw = draw;
         this.allMinnows = [];
         this.moving = false;
+        this.shortestDistance = 200;
     }
 
     drawBall() {
@@ -24,7 +25,7 @@ class Shark {
             if (this.count % 50 === 0) {
                 randomNumber = (Math.round(Math.random() * 100) / 100) * 100;
             }
-            if (this.count % 50 >= 0 && this.count % 50 < 25) {
+            if (this.count % 50 >= 0 && this.count % 50 < 25 || this.shortestDistance <= 50) {
                 this.moveToPlayer();
             } else {
                 this.randomMovement(randomNumber);
@@ -139,6 +140,7 @@ class Shark {
                 }
             }
         }
+        this.shortestDistance = shortestDistance;
         return closestMinnow;
     }
 
