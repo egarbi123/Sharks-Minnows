@@ -212,6 +212,9 @@ class Game {
         this.setPlayer();
         this.setMinnows(minnows);
         this.informAssets();
+        if (this.minnows.length === 1) {
+            alert(`Congratulations! You Have Won! You made it to level ${this.level}`)
+        }
         for (let i = 0; i < this.sharks.length; i++) {
             this.sharks[i].getMoving();
         }

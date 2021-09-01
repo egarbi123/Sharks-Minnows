@@ -10,7 +10,7 @@ header {
     width: 100%;
     height: 50px;
     text-align: center;
-    color: #7fcdff;
+    color: #76b6c4;
 }
 
 #game {
@@ -29,7 +29,7 @@ footer {
     display: flex;
     flex-direction: column;
     text-align: center;
-    background-color: #76b6c4;
+    background-color: #7fcdff;
     height: 500px;
     width: 300px;
     margin-top: 72px;
@@ -49,7 +49,7 @@ footer {
 }
 
 .button:hover {
-    background-color: #064273;
+    background-color: #7fcdff;
 }
 
 .button:active {
