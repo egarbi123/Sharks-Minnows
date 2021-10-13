@@ -1,37 +1,6 @@
-## Welcome to GitHub Pages
+## Sharks & Minnows
 
-You can use the [editor on GitHub](https://github.com/egarbi123/Sharks-Minnows/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/egarbi123/Sharks-Minnows/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+This is a simple game inspired by the playground classic sharks and minnows.  The goal is to reach the top of the screen without being eaten by a shark, but whenever any minnow gets eaten they become the shark.
+The game was built only using JavaScript for the game logic, CSS for minimal styling, and HTML Canvas to display the game board.
+Event handlers were added to allow for button use and movement player movement logic.
+Shark movement logic is dictated by an algorithm which finds the shortest distance to surviving minnows, and moves towards it with some randomization included for more interesting gameplay.
