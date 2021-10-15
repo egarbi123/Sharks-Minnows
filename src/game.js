@@ -83,6 +83,7 @@ class Game {
         this.sharks = [];
         this.minnows = [];
         this.ctx.clearRect(0, 0, 500, 500);
+        this.level = 0;
     }
 
     pauseGame() {
