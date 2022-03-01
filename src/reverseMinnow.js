@@ -32,6 +32,20 @@ class reverseMinnow {
 
     findSharkPlayerDistance(shark) {
         let distance = this.distance(shark);
+        return distance;
+    }
+
+    chooseMovement(sharks) {
+        for (let i = 0; i < sharks.length; i++) {
+            if (sharks[i].isHuman) {
+                let humanShark = sharks[i];
+            }
+        }
+        if (this.findSharkPlayerDistance(humanShark) <= 10) {
+            this.moveAway(humanShark);
+        } else {
+            this.makeMove();
+        }
     }
 
     makeMove() {
