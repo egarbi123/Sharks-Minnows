@@ -48,6 +48,21 @@ class reverseMinnow {
         }
     }
 
+    moveAway(humanShark) {
+        let xDist = this.x - shark.x;
+        let yDist = this.y - shark.y;
+        if (xDist >= 0) {
+            this.left();
+        } else {
+            this.right();
+        }
+        if (yDist >= 0) {
+            this.up();
+        } else {
+            this.down();
+        }
+    }
+
     makeMove() {
         if (this.survivor === false && this.dead === false) {
             let closestShark = this.findClosestShark(this.sharks);
