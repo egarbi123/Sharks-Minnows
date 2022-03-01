@@ -30,6 +30,10 @@ class reverseMinnow {
         return closestShark;
     }
 
+    findSharkPlayerDistance(shark) {
+        let distance = this.distance(shark);
+    }
+
     makeMove() {
         if (this.survivor === false && this.dead === false) {
             let closestShark = this.findClosestShark(this.sharks);
