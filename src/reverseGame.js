@@ -1,6 +1,8 @@
 import Player from './player';
 import Shark from './shark';
 import Minnow from './minnow';
+import ReverseMinnow from './reverseMinnow';
+import ReverseShark from './reverseShark';
 
 class ReverseGame {
     constructor() {

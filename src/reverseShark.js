@@ -1,4 +1,4 @@
-class reverseShark {
+class ReverseShark {
     constructor(ctx, winLogic) {
         this.winLogic = winLogic;
         this.ctx = ctx;
@@ -45,4 +45,4 @@ class reverseShark {
     }
 }
 
-export default reverseShark;
+export default ReverseShark;

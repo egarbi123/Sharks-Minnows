@@ -1,4 +1,4 @@
-class reverseMinnow {
+class ReverseMinnow {
     constructor(ctx, draw, x, y) {
         this.survivor = false;
         this.dead = false;
@@ -133,4 +133,4 @@ class reverseMinnow {
     }
 }
 
-export default reverseMinnow;
+export default ReverseMinnow;
