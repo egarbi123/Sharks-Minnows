@@ -129,8 +129,8 @@ class ReverseGame {
         }
     }
 
-    setPlayer() {
-        this.player = new Player(this.ctx, this.winner);
+    setReversePlayer() {
+        this.player = new ReverseShark(this.ctx, this.winner);
         this.minnows.push(this.player)
         this.player.drawBall();
     }
