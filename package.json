@@ -20,7 +20,7 @@
     "homepage": "https://github.com/egarbi123/Sharks-Minnows#readme",
     "dependencies": {},
     "devDependencies": {
-        "webpack": "^4.43.0",
-        "webpack-cli": "^3.3.11"
+        "webpack": "^5.75.0",
+        "webpack-cli": "^5.0.1"
     }
 }
